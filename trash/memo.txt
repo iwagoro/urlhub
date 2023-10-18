@@ -1,0 +1,98 @@
+データベース
+
+Urls
+    name:string
+    lowName:string
+    presets:Array<string>
+    date:datae --ただしゼロパディング必須--
+    image:string
+    url:string
+    
+Recentts
+    preset
+        name:string
+    url
+        name:string
+
+Presets
+    name:string
+    lowName:string
+    image:string
+
+※　name重複禁止
+※　検索は前方検索のみ
+
+------------------------------
+データの保管
+
+    Username    useStateに保管、Providerで提供
+    Recents　   local storage(key="recent_url , recent_preset") ,末尾が最新
+    urls        指定の数だけ読み込み、local storage(key="urls")
+    presets     指定の数だけ読み込み、local storage(key="presets")
+
+------------------------------
+参照時
+
+検索バー
+
+    キーワードはすべてlowerCaseに
+    lowNameを参照
+
+Recents
+
+    recent_url/recent_presetのnameをそのまま参照
+
+PRESETS/LIBRARY/PRESET_INFO
+
+    date順に並び替えたものを指定数ごとに取得
+
+
+------------------------------
+Recentsの更新タイミング
+
+    1.Url/Presetが追加されたとき
+    2.Url/Presetを閲覧したとき
+
+    local storageを変更
+    firestoreに反映
+
+------------------------------
+追加時
+
+    Url/Preset      Recentsの配列の書き換え
+
+------------------------------
+HOME
+
+    Recentの表示（ページング機能がほしい）
+
+        if(local storageが存在しないなら)
+
+            読み込み時、Recentsをfirebaseから読み込む
+
+            ↓
+
+            Local Storageに格納
+
+            ↓
+        Local　Storageを参照
+
+------------------------------
+AddPage
+
+
+------------------------------
+memo
+
+    各ページのドキュメント読み込み時に、LocalStorageにすでに存在するかのチェックをしていないため
+    注意
+
+
+
+
+
+------------------------------
+
+
+
+
